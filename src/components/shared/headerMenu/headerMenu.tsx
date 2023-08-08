@@ -8,8 +8,15 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router-dom";
+import {
+  selectCurrentUser,
+  logOutUser,
+} from "../../../redux/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 function HeaderMenu() {
   const navigate = useNavigate();
+  const user = useSelector(selectCurrentUser);
+  const dispatch = useDispatch();
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -34,14 +41,25 @@ function HeaderMenu() {
             >
               Constellation
             </Typography>
-            <Button
-              color="inherit"
-              onClick={() => {
-                navigate("/login");
-              }}
-            >
-              Login
-            </Button>
+            {user ? (
+              <Button
+                color="inherit"
+                onClick={() => {
+                  dispatch(logOutUser());
+                }}
+              >
+                Logout
+              </Button>
+            ) : (
+              <Button
+                color="inherit"
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                Login
+              </Button>
+            )}
           </Toolbar>
         </AppBar>
       </Box>

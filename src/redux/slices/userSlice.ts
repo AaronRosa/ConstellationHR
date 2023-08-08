@@ -17,7 +17,7 @@ export const userSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<string>) => {
+    loginUser: (state, action: PayloadAction<string>) => {
       state.user = action.payload;
     },
     logOutUser: state => {
@@ -30,9 +30,10 @@ export const userSlice = createSlice({
 const { actions, reducer } = userSlice;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectUser = (state: RootState) => state.currentUser.user;
+export const selectCurrentUser = (state: RootState) =>
+  state.currentUser.user;
 
 // Extract and export each action creator by name
-export const { setUser, logOutUser } = actions;
+export const { loginUser, logOutUser } = actions;
 
 export default reducer;
