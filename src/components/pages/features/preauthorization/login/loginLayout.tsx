@@ -7,6 +7,7 @@ import {
   loginUser,
   logOutUser,
   selectCurrentUser,
+  User,
 } from "../../../../../redux/slices/userSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -34,7 +35,15 @@ export default function LoginLayout() {
       username: data.username,
       password: data.password,
     };
-    dispatch(loginUser("Aaron"));
+    dispatch(
+      loginUser({
+        id: "1",
+        fname: "Aaron",
+        lname: "Rosa",
+        shipAssignedID: "1",
+        shipAssignedName: "Enterprise",
+      }),
+    );
     navigate("/dashboard");
   };
 
@@ -74,13 +83,6 @@ export default function LoginLayout() {
           Sign In
         </Button>
       </form>
-
-      <div style={{ marginTop: "100px" }}>
-        <h2>Demo auto login/logout</h2>
-        <button onClick={() => dispatch(loginUser("aaron"))}>Login</button>
-        <button onClick={() => dispatch(logOutUser())}>Logout</button>
-        {user}
-      </div>
     </Grid>
   );
 }
