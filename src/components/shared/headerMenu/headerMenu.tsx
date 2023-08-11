@@ -11,11 +11,12 @@ import { useNavigate } from "react-router-dom";
 import {
   selectCurrentUser,
   logOutUser,
+  isUserSignedIn,
 } from "../../../redux/slices/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 function HeaderMenu() {
   const navigate = useNavigate();
-  const user = useSelector(selectCurrentUser);
+  const isAuthenticated = useSelector(isUserSignedIn);
   const dispatch = useDispatch();
   return (
     <>
@@ -41,7 +42,7 @@ function HeaderMenu() {
             >
               Constellation
             </Typography>
-            {user ? (
+            {isAuthenticated ? (
               <Button
                 color="inherit"
                 onClick={() => {

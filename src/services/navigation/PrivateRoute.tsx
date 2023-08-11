@@ -1,8 +1,6 @@
 import { Navigate, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
-import React, { PropsWithChildren } from "react";
-import { history } from "./NavigationHelpers";
-import { selectCurrentUser } from "../../redux/slices/userSlice";
+import { isUserSignedIn } from "../../redux/slices/userSlice";
 
 export type ProtectedRouteProps = {
   authenticationPath: string;
@@ -13,9 +11,9 @@ export default function ProtectedRoute({
   authenticationPath,
   outlet,
 }: ProtectedRouteProps) {
-  const user = useSelector(selectCurrentUser);
+  const isAuthenticated = useSelector(isUserSignedIn);
 
-  if (user) {
+  if (isAuthenticated) {
     return outlet;
   } else {
     return <Navigate to={{ pathname: authenticationPath }} />;
