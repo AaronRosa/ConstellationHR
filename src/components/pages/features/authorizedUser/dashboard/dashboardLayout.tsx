@@ -1,5 +1,14 @@
+import { useDispatch, useSelector } from "react-redux";
+import NeedsReview from "./needsReview";
+
 function DashboardLayout() {
-  return <h1>Dashboard</h1>;
+  const dispatch = useDispatch();
+  return (
+    <div>
+      <h1>Dashboard</h1>
+      <NeedsReview />
+    </div>
+  );
 }
 
 export default DashboardLayout;

@@ -5,7 +5,10 @@ import {
   RegisterPage,
   LoginPage,
 } from "./components/pages/features/preauthorization/superPreauthorizationComponents";
+import { DashboardPage } from "./components/pages/features/authorizedUser/superAuthorizedPages";
+
 import LandingPage from "./components/pages/landingPage";
+import PrivateRoute from "./services/navigation/PrivateRoute";
 
 export const routerData = [
   {
@@ -24,6 +27,15 @@ export const routerData = [
       {
         path: "/register",
         element: <RegisterPage />,
+      },
+      {
+        element: (
+          <PrivateRoute
+            authenticationPath="/login"
+            outlet={<DashboardPage />}
+          />
+        ),
+        path: "/dashboard",
       },
     ],
   },

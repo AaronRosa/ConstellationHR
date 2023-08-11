@@ -4,14 +4,15 @@ import axios from "axios";
 import type { RootState } from "../../../../../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  setUser,
+  loginUser,
   logOutUser,
-  selectUser,
+  selectCurrentUser,
 } from "../../../../../redux/slices/userSlice";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginLayout() {
-  const user = useSelector(selectUser);
-
+  const user = useSelector(selectCurrentUser);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [data, setData] = useState({
     username: "",
@@ -33,26 +34,8 @@ export default function LoginLayout() {
       username: data.username,
       password: data.password,
     };
-    axios
-      .post(login, userData)
-      .then(response => {
-        if (response.status) {
-          localStorage.setItem("accessToken", "1234");
-          localStorage.setItem("refreshToken", "0987");
-          localStorage.setItem("user", "{name: 'Aaron'}");
-          window.location.href = "/";
-        }
-      })
-      .catch(error => {
-        if (error.response) {
-          console.log(error.response);
-          console.log("server responded");
-        } else if (error.request) {
-          console.log("network error");
-        } else {
-          console.log(error);
-        }
-      });
+    dispatch(loginUser("Aaron"));
+    navigate("/dashboard");
   };
 
   return (
@@ -92,8 +75,9 @@ export default function LoginLayout() {
         </Button>
       </form>
 
-      <div>
-        <button onClick={() => dispatch(setUser("aaron"))}>Login</button>
+      <div style={{ marginTop: "100px" }}>
+        <h2>Demo auto login/logout</h2>
+        <button onClick={() => dispatch(loginUser("aaron"))}>Login</button>
         <button onClick={() => dispatch(logOutUser())}>Logout</button>
         {user}
       </div>
