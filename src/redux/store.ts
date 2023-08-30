@@ -1,9 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { userReducer } from "./slices";
+import { userReducer, globalModalReducer } from "./slices";
 
 export const store = configureStore({
   reducer: {
     currentUser: userReducer,
+    globalModal: globalModalReducer,
   },
 });
 

@@ -5,7 +5,11 @@ import {
   RegisterPage,
   LoginPage,
 } from "./components/pages/features/preauthorization/superPreauthorizationComponents";
-import { DashboardPage } from "./components/pages/features/authorizedUser/superAuthorizedPages";
+import {
+  DashboardPage,
+  UserProfilePage,
+  TransfersPage,
+} from "./components/pages/features/authorizedUser/superAuthorizedPages";
 
 import LandingPage from "./components/pages/landingPage";
 import PrivateRoute from "./services/navigation/PrivateRoute";
@@ -29,13 +33,16 @@ export const routerData = [
         element: <RegisterPage />,
       },
       {
-        element: (
-          <PrivateRoute
-            authenticationPath="/login"
-            outlet={<DashboardPage />}
-          />
-        ),
+        element: <PrivateRoute outlet={<DashboardPage />} />,
         path: "/dashboard",
+      },
+      {
+        element: <PrivateRoute outlet={<UserProfilePage />} />,
+        path: "/myAccount",
+      },
+      {
+        element: <PrivateRoute outlet={<TransfersPage />} />,
+        path: "/transfers",
       },
     ],
   },

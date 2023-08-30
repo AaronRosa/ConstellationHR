@@ -28,7 +28,6 @@ const initialState: UserState = {
 
 export const userSlice = createSlice({
   name: "counter",
-  // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
     loginUser: (state, action: PayloadAction<User>) => {

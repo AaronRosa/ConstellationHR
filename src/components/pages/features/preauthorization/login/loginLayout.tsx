@@ -2,17 +2,11 @@ import { useState } from "react";
 import { Button, Grid, TextField } from "@mui/material";
 import axios from "axios";
 import type { RootState } from "../../../../../redux/store";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  loginUser,
-  logOutUser,
-  selectCurrentUser,
-  User,
-} from "../../../../../redux/slices/userSlice";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../../../../redux/slices/userSlice";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginLayout() {
-  const user = useSelector(selectCurrentUser);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [data, setData] = useState({
