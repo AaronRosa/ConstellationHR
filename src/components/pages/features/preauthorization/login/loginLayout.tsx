@@ -13,7 +13,6 @@ export default function LoginLayout() {
     username: "",
     password: "",
   });
-  const login = "https://jsonplaceholder.typicode.com/posts";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -36,6 +35,8 @@ export default function LoginLayout() {
         lname: "Rosa",
         shipAssignedID: "1",
         shipAssignedName: "Enterprise",
+        email: "a_rosa6942@yahoo.com",
+        role: "Programmer"
       }),
     );
     navigate("/dashboard");

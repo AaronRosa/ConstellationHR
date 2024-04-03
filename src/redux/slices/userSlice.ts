@@ -19,6 +19,8 @@ export interface User {
   lname: string;
   shipAssignedID: string;
   shipAssignedName: string;
+  email: string;
+  role: string;
 }
 
 // Define the initial state using that type
@@ -27,10 +29,11 @@ const initialState: UserState = {
 };
 
 export const userSlice = createSlice({
-  name: "counter",
+  name: "currentUser",
   initialState,
   reducers: {
     loginUser: (state, action: PayloadAction<User>) => {
+      console.log("loginUser action.payload: ", action.payload);
       state.user = action.payload;
       localStorage.clear();
       localStorage.setItem(
