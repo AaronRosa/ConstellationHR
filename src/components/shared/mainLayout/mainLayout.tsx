@@ -4,7 +4,9 @@ function MainLayout() {
   return (
     <>
       <HeaderMenu />
-      <Outlet />
+      <div style={{ marginTop: "20px" }}>
+        <Outlet />
+      </div>
     </>
   );
 }
